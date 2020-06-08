@@ -1,0 +1,37 @@
+{
+  "name": "tipakbot",
+  "version": "1.0.0",
+  "description": "General purpose Discord bot, rewritten in TypeScript",
+  "main": "build/src/bot/tipakBot.js",
+  "scripts": {
+    "test": "echo \"Error: There are no tests && exit 1",
+    "lint": "eslint src --ext ts",
+    "build": "rimraf build && tsc",
+    "rimraf": "rimraf build",
+    "rerun": "npm run build && node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tipakA/tipakBot.git"
+  },
+  "author": "tipakA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tipakA/tipakBot/issues"
+  },
+  "homepage": "https://github.com/tipakA/tipakBot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "pg": "^8.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.11",
+    "@types/pg": "^7.14.3",
+    "@typescript-eslint/eslint-plugin": "^3.1.0",
+    "@typescript-eslint/parser": "^3.1.0",
+    "eslint": "^6.8.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.9.5"
+  }
+}

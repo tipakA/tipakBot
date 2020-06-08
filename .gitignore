@@ -1,0 +1,9 @@
+# IDE
+.vscode/
+
+# Packages
+node_modules/
+package-lock.json
+
+# Credentials
+.env
