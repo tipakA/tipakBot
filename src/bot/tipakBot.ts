@@ -32,7 +32,7 @@ export default class tipakBot extends Client {
       const name = file.split('.')[0];
       if (Number(process.env.DEBUGLEVEL) >= 1) console.log(`Loading command ${name}.`);
       const command: Command = require(`${__dirname}/commands/${name}.js`); // eslint-disable-line global-require
-      console.log(command);
+      if (Number(process.env.DEBUGLEVEL) >= 2) console.log(command);
       if (command.initRun) command.initRun(this);
       this.commands.set(command.name, command);
     }
@@ -43,7 +43,7 @@ export default class tipakBot extends Client {
       const name = file.split('.')[0];
       if (Number(process.env.DEBUGLEVEL) >= 1) console.log(`Loading event ${name}.`);
       const event: Event = require(`${__dirname}/events/${name}.js`); // eslint-disable-line global-require
-      console.log(event);
+      if (Number(process.env.DEBUGLEVEL) >= 2) console.log(event);
       this.on(event.type, event.run.bind(null, this));
     }
   }
