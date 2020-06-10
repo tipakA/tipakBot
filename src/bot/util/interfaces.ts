@@ -1,4 +1,4 @@
-import { Message, PermissionString } from 'discord.js'; // eslint-disable-line no-unused-vars
+import { Message, PermissionString, Snowflake } from 'discord.js'; // eslint-disable-line no-unused-vars
 import { default as tipakBot } from '../tipakBot'; // eslint-disable-line no-unused-vars
 
 export interface Command {
@@ -8,9 +8,12 @@ export interface Command {
   category: string;
   guildOnly: boolean;
   ownerOnly: boolean;
+  ownerSilentError?: boolean;
   permissions: PermissionString[];
   args: boolean;
   disabled?: boolean;
+  disabledIn?: Snowflake[];
+  enabledIn?: Snowflake[];
   initRun?(client: tipakBot): boolean;
 }
 
