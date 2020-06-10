@@ -10,9 +10,11 @@ function messageEvent(client: tipakBot, message: Message) {
   if (!prefix || !message.content.startsWith(prefix.prefix)) return;
 
   const args = message.content.slice(prefix.prefix.length).split(/ +/);
-  const command = args.shift()?.toLowerCase();
+  const cmd = args.shift()!.toLowerCase();
+  const command = client.commands.has(cmd) ? client.commands.get(cmd)! : null;
+  if (!command) return;
 
-  if (command === 'ping') return message.channel.send('pong');
+  command.run(message, args);
 }
 
 export = {
