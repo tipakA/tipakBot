@@ -16,8 +16,19 @@ export interface Command {
 
 export interface Event {
   run(client: tipakBot, ...args: any[]): any;
-  type: EventType
+  type: EventType;
 }
 
 export type EventType =
   | 'ready';
+
+export interface Prefix {
+  prefix: string;
+  type: PrefixType;
+}
+
+export type PrefixType =
+  | 'default'
+  | 'guild'
+  | 'user'
+  | 'mention';
