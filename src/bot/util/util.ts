@@ -10,9 +10,8 @@ export const ls = promisify(readdir);
 export function getPrefix(message: Message): Prefix {
   const prefix = 'tr+';
 
-  const o: Prefix = {
+  return {
     prefix,
     type: 'default',
-  };
-  return o;
+  } as Prefix;
 }
