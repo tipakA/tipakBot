@@ -20,7 +20,8 @@ export interface Event {
 }
 
 export type EventType =
-  | 'ready';
+  | 'ready'
+  | 'message';
 
 export interface Prefix {
   prefix: string;
