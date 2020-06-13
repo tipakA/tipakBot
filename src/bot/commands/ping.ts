@@ -1,7 +1,7 @@
 import { Command } from '../util/interfaces'; // eslint-disable-line no-unused-vars
 import { Message } from 'discord.js'; // eslint-disable-line no-unused-vars
 
-function pingCommand(message: Message, args: string[]) {
+function pingCommand(message: Message, args: string[]): Promise<Message> {
   if (!args.length) return message.channel.send('Pong.');
   return message.channel.send(`Pong, ${args.join()}`);
 }
