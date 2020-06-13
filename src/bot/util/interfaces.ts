@@ -46,6 +46,12 @@ export type PermError =
 export interface Prefix {
   prefix: string;
   type: PrefixType;
+  _error?: null | string;
+}
+
+export interface PrefixOrRegex {
+  prefix: string | RegExp;
+  type: PrefixType;
 }
 
 export type PrefixType =

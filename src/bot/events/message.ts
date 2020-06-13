@@ -6,9 +6,8 @@ import { default as tipakBot } from '../tipakBot'; // eslint-disable-line no-unu
 
 async function messageEvent(client: tipakBot, message: Message) {
   if (message.author.bot) return;
-  const prefix = getPrefix(message);
-
-  if (!prefix || !message.content.startsWith(prefix.prefix)) return;
+  const prefix = await getPrefix(client, message);
+  if (!prefix) return;
 
   const args = message.content.slice(prefix.prefix.length).split(/ +/);
   const cmd = args.shift()!.toLowerCase();
@@ -16,11 +15,8 @@ async function messageEvent(client: tipakBot, message: Message) {
   if (!command) return;
 
   const blacklisted = await checkBlacklist(client, message.author.id);
-  if (blacklisted) {
-    if (!blacklisted.notified) {
-      await client.redis.set(`UBL:${message.author.id}`, 'true');
-      return message.reply(errors['en'].USER_BLACKLISTED);
-    }
+  if (blacklisted.blacklisted) {
+    if (!blacklisted.notified) return message.reply(errors['en'].USER_BLACKLISTED);
     return;
   }
 
