@@ -13,6 +13,7 @@ async function clear(client: tipakBot, input: any) {
 }
 
 async function evalCommand(message: Message, args: string[]): Promise<Message> {
+  const client = message.client; // eslint-disable-line no-unused-vars
   const code = args.join(' ');
   let cleaned;
   try {
