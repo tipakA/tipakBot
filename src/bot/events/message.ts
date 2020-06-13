@@ -1,10 +1,10 @@
-import { getPermissions, getPrefix } from '../util/util';
+import { checkBlacklist, getPermissions, getPrefix } from '../util/util';
 import { errors } from '../util/constants';
 import { Event } from '../util/interfaces'; // eslint-disable-line no-unused-vars
 import { Message } from 'discord.js'; // eslint-disable-line no-unused-vars
 import { default as tipakBot } from '../tipakBot'; // eslint-disable-line no-unused-vars
 
-function messageEvent(client: tipakBot, message: Message) {
+async function messageEvent(client: tipakBot, message: Message) {
   if (message.author.bot) return;
   const prefix = getPrefix(message);
 
@@ -14,6 +14,15 @@ function messageEvent(client: tipakBot, message: Message) {
   const cmd = args.shift()!.toLowerCase();
   const command = client.commands.get(cmd) ?? client.commands.find(c => c.aliases.includes(cmd));
   if (!command) return;
+
+  const blacklisted = await checkBlacklist(client, message.author.id);
+  if (blacklisted) {
+    if (!blacklisted.notified) {
+      await client.redis.set(`UBL:${message.author.id}`, 'true');
+      return message.reply(errors['en'].USER_BLACKLISTED);
+    }
+    return;
+  }
 
   if (message.author.id !== process.env.OWNER && (command.disabled || command.enabledIn?.length || command.disabledIn?.length)) {
     if (message.channel.type !== 'text') {

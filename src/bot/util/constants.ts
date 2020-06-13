@@ -9,7 +9,7 @@ const en = {
     'MEMBER_NULL': 'There was no member passed.',
     'NO_PERMS': 'You are missing permissions to use this command:',
     'OWNER_ONLY': 'This command is for use only by bot owners.',
-    'USER_BLACKLISTED': 'You have been blacklisted from using this bot.\nIf you think this is an error, join the support server and explain situation (invite is always available via `support` command).',
+    'USER_BLACKLISTED': 'you have been blacklisted from using this bot.\nIf you think this is an error, join the support server and explain situation (invite is always available via `support` command).',
   },
   permissions: {
     'ADD_REACTIONS': 'Add reactions',

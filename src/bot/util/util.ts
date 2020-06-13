@@ -1,8 +1,9 @@
-import { CheckedPermissions, Prefix } from './interfaces'; // eslint-disable-line no-unused-vars
-import { GuildMember, Message, PermissionString } from 'discord.js'; // eslint-disable-line no-unused-vars
+import { BlacklistEntry, CheckedPermissions, Prefix } from './interfaces'; // eslint-disable-line no-unused-vars
+import { GuildMember, Message, PermissionString, Snowflake } from 'discord.js'; // eslint-disable-line no-unused-vars
 import { promisify } from 'util';
 import { permissions as readable } from './constants';
 import { readdir } from 'fs';
+import tipakBot from '../tipakBot'; // eslint-disable-line no-unused-vars
 
 export const wait = promisify(setTimeout);
 
@@ -28,4 +29,10 @@ export function getPermissions(member: GuildMember | null, permissions: Permissi
     res.missingReadable.push(readable.en[p]);
   }
   return res;
+}
+
+export async function checkBlacklist(client: tipakBot, id: Snowflake): Promise<BlacklistEntry> {
+  const data = await client.redis.get(`UBL:${id}`);
+  if (!data) return { id, blacklisted: false }; // eslint-disable-line sort-keys
+  return { id, blacklisted: true, notified: data === 'false' }; // eslint-disable-line sort-keys
 }
