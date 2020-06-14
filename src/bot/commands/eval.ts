@@ -4,12 +4,12 @@ import { Message } from 'discord.js'; // eslint-disable-line no-unused-vars
 import tipakBot from '../tipakBot'; // eslint-disable-line no-unused-vars
 
 async function clear(client: tipakBot, input: any) {
-  if (input && input.constructor.name === 'Promise') input = await input; /* eslint-disable-line no-param-reassign */
+  if (input?.constructor.name === 'Promise') input = await input; /* eslint-disable-line no-param-reassign */
 
   return inspect(input, { depth: 0 })
     .replace(/`/g, '`\u200b')
     .replace(/@/g, '`\u200b')
-    .replace(client.token!, '👌😂💯😂😂💯😂😂💯💯');
+    .replace(client.token!, '👌😂💯😂😂💯😂👌😂💯💯👌');
 }
 
 async function evalCommand(message: Message, args: string[]): Promise<Message> {

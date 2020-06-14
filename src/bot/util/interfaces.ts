@@ -1,6 +1,5 @@
 import { Message, PermissionString, Snowflake } from 'discord.js'; // eslint-disable-line no-unused-vars
-import { permissions } from './constants'; // eslint-disable-line no-unused-vars
-import { default as tipakBot } from '../tipakBot'; // eslint-disable-line no-unused-vars
+import tipakBot from '../tipakBot'; // eslint-disable-line no-unused-vars
 
 export interface BlacklistEntry {
   id: Snowflake;

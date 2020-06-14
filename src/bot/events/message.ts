@@ -2,7 +2,7 @@ import { checkBlacklist, getPermissions, getPrefix } from '../util/util';
 import { errors } from '../util/constants';
 import { Event } from '../util/interfaces'; // eslint-disable-line no-unused-vars
 import { Message } from 'discord.js'; // eslint-disable-line no-unused-vars
-import { default as tipakBot } from '../tipakBot'; // eslint-disable-line no-unused-vars
+import tipakBot from '../tipakBot'; // eslint-disable-line no-unused-vars
 
 async function messageEvent(client: tipakBot, message: Message) {
   if (message.author.bot) return;
@@ -21,8 +21,8 @@ async function messageEvent(client: tipakBot, message: Message) {
   }
 
   if (message.author.id !== process.env.OWNER && (command.disabled || command.enabledIn?.length || command.disabledIn?.length)) {
+    if (command.disabled) return message.channel.send(errors['en'].COMMAND_DISABLED);
     if (message.channel.type !== 'text') {
-      if (command.disabled) return message.channel.send(errors['en'].COMMAND_DISABLED);
       if (command.enabledIn) return message.channel.send(errors['en'].COMMAND_NOT_ENABLED);
     } else {
       if (command.disabledIn?.includes(message.guild!.id)) return message.channel.send(errors['en'].COMMAND_DISABLED_GUILD);
@@ -32,14 +32,14 @@ async function messageEvent(client: tipakBot, message: Message) {
   if (command.guildOnly && message.channel.type !== 'text') return message.channel.send(errors['en'].GUILD_ONLY);
   if (command.ownerOnly && message.author.id !== process.env.OWNER) {
     if (command.ownerSilentError) return;
-    else return message.channel.send(errors['en'].OWNER_ONLY);
+    return message.channel.send(errors['en'].OWNER_ONLY);
   }
   if (message.author.id !== process.env.OWNER && command.permissions.length) {
     const perms = getPermissions(message.member, command.permissions);
     if (perms._error) {
       console.log('Error while checking permissions', perms._error);
       if (errors['en'][perms._error]) return message.channel.send([ 'Error while checking permissions:', errors['en'][perms._error] ]);
-      else return message.channel.send('Unknown error occured.');
+      return message.channel.send('Unknown error occured.');
     }
     if (perms.missing.length) {
       if (command.permissionsSilentError) return;

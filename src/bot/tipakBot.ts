@@ -28,22 +28,26 @@ export default class tipakBot extends Client {
 
     const cmdFiles = await ls(`${__dirname}/commands`).then(d => d.filter(f => f.endsWith('.js')));
     console.log(`Loading ${cmdFiles.length} commands...`);
-    for (const file of cmdFiles.filter(f => f.endsWith('.js'))) {
+    for (const file of cmdFiles) {
       const name = file.split('.')[0];
       if (Number(process.env.DEBUGLEVEL) >= 1) console.log(`Loading command ${name}.`);
+
       const command: Command = require(`${__dirname}/commands/${name}.js`); // eslint-disable-line global-require
       if (Number(process.env.DEBUGLEVEL) >= 2) console.log(command);
       if (command.initRun) command.initRun(this);
+
       this.commands.set(command.name, command);
     }
 
     const evtFiles = await ls(`${__dirname}/events`).then(d => d.filter(f => f.endsWith('.js')));
     console.log(`Loading ${evtFiles.length} events...`);
-    for (const file of evtFiles.filter(f => f.endsWith('js'))) {
+    for (const file of evtFiles) {
       const name = file.split('.')[0];
       if (Number(process.env.DEBUGLEVEL) >= 1) console.log(`Loading event ${name}.`);
+
       const event: Event = require(`${__dirname}/events/${name}.js`); // eslint-disable-line global-require
       if (Number(process.env.DEBUGLEVEL) >= 2) console.log(event);
+
       this.on(event.type, event.run.bind(null, this));
     }
   }
