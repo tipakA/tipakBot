@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.1
+
+- Fixed command handler to handle situations where disabled command properly wouldn't run in DMs, but would run in guilds
+
 ## 1.3.0
 
 - Added owner only eval command
