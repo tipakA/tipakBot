@@ -5,9 +5,30 @@ import { permissions as readable } from './constants';
 import { readdir } from 'fs';
 import tipakBot from '../tipakBot'; // eslint-disable-line no-unused-vars
 
+export const ls = promisify(readdir);
+
 export const wait = promisify(setTimeout);
 
-export const ls = promisify(readdir);
+export async function checkBlacklist(client: tipakBot, id: Snowflake): Promise<BlacklistEntry> {
+  if (id === process.env.OWNER) return { id, blacklisted: false }; // eslint-disable-line sort-keys
+  const data = await client.redis.get(`UBL:${id}`);
+  if (!data) return { id, blacklisted: false }; // eslint-disable-line sort-keys
+  await client.redis.set(`UBL:${id}`, 'true');
+  return { id, blacklisted: true, notified: data === 'true' }; // eslint-disable-line sort-keys
+}
+
+export function getPermissions(member: GuildMember | null, permissions: PermissionString[]): CheckedPermissions {
+  const res: CheckedPermissions = { missing: [], missingReadable: [] };
+  if (!member) return { ...res, _error: 'MEMBER_NULL' };
+  if (!permissions.length) return res;
+
+  const missing = member.permissions.missing(permissions);
+  for (const p of missing) {
+    res.missing.push(p);
+    res.missingReadable.push(readable.en[p]);
+  }
+  return res;
+}
 
 export async function getPrefix(client: tipakBot, message: Message): Promise<Prefix | null> {
   let guildPrefixes: string[], userPrefix: string | null;
@@ -31,25 +52,4 @@ export async function getPrefix(client: tipakBot, message: Message): Promise<Pre
     if (match) return { prefix: match[0], type: prefix.type };
   }
   return null;
-}
-
-export function getPermissions(member: GuildMember | null, permissions: PermissionString[]): CheckedPermissions {
-  const res: CheckedPermissions = { missing: [], missingReadable: [] };
-  if (!member) return { ...res, _error: 'MEMBER_NULL' };
-  if (!permissions.length) return res;
-
-  const missing = member.permissions.missing(permissions);
-  for (const p of missing) {
-    res.missing.push(p);
-    res.missingReadable.push(readable.en[p]);
-  }
-  return res;
-}
-
-export async function checkBlacklist(client: tipakBot, id: Snowflake): Promise<BlacklistEntry> {
-  if (id === process.env.OWNER) return { id, blacklisted: false }; // eslint-disable-line sort-keys
-  const data = await client.redis.get(`UBL:${id}`);
-  if (!data) return { id, blacklisted: false }; // eslint-disable-line sort-keys
-  await client.redis.set(`UBL:${id}`, 'true');
-  return { id, blacklisted: true, notified: data === 'true' }; // eslint-disable-line sort-keys
 }
