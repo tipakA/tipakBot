@@ -1,15 +1,22 @@
 const en = {
   errors: {
-    'ARGS_REQUIRED': 'This command requires args, but you did not pass any.',
-    'COMMAND_DISABLED': 'Sorry, but this command is currently disabled.',
-    'COMMAND_DISABLED_GUILD': 'Sorry, but this command was disabled for this guild.',
-    'COMMAND_NOT_ENABLED': 'Sorry, but this command is enabled only in specific guilds.',
-    'COMMAND_NOT_ENABLED_GUILD': 'Sorry, but this command is currently disabled globally, and is not enabled for this guild.',
-    'GUILD_ONLY': 'This command is for use only in a guild.',
-    'MEMBER_NULL': 'There was no member passed.',
-    'NO_PERMS': 'You are missing permissions to use this command:',
-    'OWNER_ONLY': 'This command is for use only by bot owners.',
-    'USER_BLACKLISTED': 'you have been blacklisted from using this bot.\nIf you think this is an error, join the support server and explain situation (invite is always available via `support` command).',
+    command: {
+      'NO_TARGET': 'You have passed invalid target - No one was mentioned or ID is incorrect.',
+    },
+    eventHandler: {
+      'ARGS_REQUIRED': 'This command requires args, but you did not pass any.',
+      'COMMAND_DISABLED': 'Sorry, but this command is currently disabled.',
+      'COMMAND_DISABLED_GUILD': 'Sorry, but this command was disabled for this guild.',
+      'COMMAND_NOT_ENABLED': 'Sorry, but this command is enabled only in specific guilds.',
+      'COMMAND_NOT_ENABLED_GUILD': 'Sorry, but this command is currently disabled globally, and is not enabled for this guild.',
+      'GUILD_ONLY': 'This command is for use only in a guild.',
+      'NO_PERMS': 'You are missing permissions to use this command:',
+      'OWNER_ONLY': 'This command is for use only by bot owners.',
+      'USER_BLACKLISTED': 'you have been blacklisted from using this bot.\nIf you think this is an error, join the support server and explain situation (invite is always available via `support` command).',
+    },
+    util: {
+      'MEMBER_NULL': 'There was no member passed.',
+    },
   },
   permissions: {
     'ADD_REACTIONS': 'Add reactions',
