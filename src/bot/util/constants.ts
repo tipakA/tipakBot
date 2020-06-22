@@ -1,7 +1,14 @@
 const en = {
+  dialog: {
+    'BAN_CANCELLED': 'Banning cancelled.',
+    'CONFIRM_BAN': 'Are you sure you want to ban {{MEMBER}}?',
+  },
   errors: {
     command: {
       'NO_TARGET': 'You have passed invalid target - No one was mentioned or ID is incorrect.',
+      'NOT_BANNABLE': 'You cannot ban this user.',
+      'NOT_BANNABLE_ME': 'I cannot ban this user.',
+      'NOT_BANNABLE_SELF': 'You cannot ban yourself.',
     },
     eventHandler: {
       'ARGS_REQUIRED': 'This command requires args, but you did not pass any.',
@@ -51,6 +58,10 @@ const en = {
     'VIEW_CHANNEL': 'View channel',
     'VIEW_GUILD_INSIGHTS': 'View guild insights',
   },
+};
+
+export const dialog = {
+  en: en.dialog,
 };
 
 export const errors = {
