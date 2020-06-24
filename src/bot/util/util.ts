@@ -1,7 +1,7 @@
 import { BlacklistEntry, CheckedPermissions, Prefix, PrefixOrRegex } from './interfaces'; // eslint-disable-line no-unused-vars
 import { GuildMember, Message, PermissionString, Snowflake } from 'discord.js'; // eslint-disable-line no-unused-vars
 import { promisify } from 'util';
-import { permissions as readable } from './constants';
+import { permission as readable } from './constants';
 import { readdir } from 'fs';
 import tipakBot from '../tipakBot'; // eslint-disable-line no-unused-vars
 

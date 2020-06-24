@@ -1,14 +1,14 @@
-import { dialog, errors } from '../util/constants';
+import { dialog, error } from '../util/constants';
 import { Command } from '../util/interfaces'; // eslint-disable-line no-unused-vars
 import { Message } from 'discord.js'; // eslint-disable-line no-unused-vars
 
 async function banCommand(message: Message, args: string[]): Promise<Message> {
   const target = message.mentions.members?.first() ?? message.guild!.members.cache.get(args[0]);
-  if (!target) return message.reply(errors['en'].command.NO_TARGET);
-  if (!target.bannable) return message.reply(errors['en'].command.NOT_BANNABLE_ME);
-  if (target.user.id === message.author.id) return message.reply(errors['en'].command.NOT_BANNABLE_SELF);
+  if (!target) return message.reply(error['en'].command.NO_TARGET);
+  if (!target.bannable) return message.reply(error['en'].command.NOT_BANNABLE_ME);
+  if (target.user.id === message.author.id) return message.reply(error['en'].command.NOT_BANNABLE_SELF);
   if (message.guild!.ownerID !== message.member!.id && target.roles.highest.position >= message.member!.roles.highest.position) {
-    return message.reply(errors['en'].command.NOT_BANNABLE);
+    return message.reply(error['en'].command.NOT_BANNABLE);
   }
 
   await message.channel.send(dialog['en'].CONFIRM_BAN.replace('{{MEMBER}}', target.toString()));
