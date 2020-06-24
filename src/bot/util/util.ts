@@ -1,3 +1,4 @@
+import * as Constants from './constants';
 import { BlacklistEntry, CheckedPermissions, Prefix, PrefixOrRegex } from './interfaces'; // eslint-disable-line no-unused-vars
 import { GuildMember, Message, PermissionString, Snowflake } from 'discord.js'; // eslint-disable-line no-unused-vars
 import { promisify } from 'util';
@@ -52,4 +53,28 @@ export async function getPrefix(client: tipakBot, message: Message): Promise<Pre
     if (match) return { prefix: match[0], type: prefix.type };
   }
   return null;
+}
+
+export function localize<
+    T extends 'error',
+    L extends keyof typeof Constants[T],
+    S extends keyof typeof Constants[T][L],
+    Z extends keyof typeof Constants[T][L][S]
+  >(type: T, lang: L, str: S, str2: Z): string;
+export function localize<
+    T extends Exclude<keyof typeof Constants, 'error'>,
+    L extends keyof typeof Constants[T],
+    S extends keyof typeof Constants[T][L],
+    Z extends keyof typeof Constants[T][L][S]
+  >(type: T, lang: L, str: S, str2?: Z): string;
+
+export function localize<
+    T extends keyof typeof Constants,
+    L extends keyof typeof Constants[T],
+    S extends keyof typeof Constants[T][L],
+    Z extends keyof typeof Constants[T][L][S]
+  >(type: T, lang: L, str: S, str2?: Z) {
+
+  const c = str2 ? Constants[type][lang][str][str2] : Constants[type][lang][str];
+  return c;
 }
