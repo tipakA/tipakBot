@@ -64,10 +64,10 @@ export const dialog = {
   en: en.dialog,
 };
 
-export const errors = {
+export const error = {
   en: en.errors,
 };
 
-export const permissions = {
+export const permission = {
   en: en.permissions,
 };
