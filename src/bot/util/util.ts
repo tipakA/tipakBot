@@ -60,21 +60,24 @@ export function localize<
     L extends keyof typeof Constants[T],
     S extends keyof typeof Constants[T][L],
     Z extends keyof typeof Constants[T][L][S]
-  >(type: T, lang: L, str: S, str2: Z): string;
+  >(type: T, lang: L, str: S, reps: [string | RegExp, string][], str2: Z): string;
 export function localize<
     T extends Exclude<keyof typeof Constants, 'error'>,
     L extends keyof typeof Constants[T],
     S extends keyof typeof Constants[T][L],
     Z extends keyof typeof Constants[T][L][S]
-  >(type: T, lang: L, str: S, str2?: Z): string;
+  >(type: T, lang: L, str: S, reps: [string | RegExp, string][], str2?: Z): string;
 
 export function localize<
     T extends keyof typeof Constants,
     L extends keyof typeof Constants[T],
     S extends keyof typeof Constants[T][L],
     Z extends keyof typeof Constants[T][L][S]
-  >(type: T, lang: L, str: S, str2?: Z) {
+  >(type: T, lang: L, str: S, reps: [string | RegExp, string][], str2?: Z) {
 
-  const c = str2 ? Constants[type][lang][str][str2] : Constants[type][lang][str];
+  let c = (str2 ? Constants[type][lang][str][str2] : Constants[type][lang][str]) as unknown as string;
+  for (const rep of reps) {
+    c = c.replace(rep[0], rep[1]);
+  }
   return c;
 }
