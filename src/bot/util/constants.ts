@@ -1,6 +1,9 @@
 const en = {
   dialog: {
+    'BAN_AUDIT_REASON': 'Banned by {{TAG}}{{REASON}}',
     'BAN_CANCELLED': 'Banning cancelled.',
+    'BAN_CONFIRM': 'User {{MEMBER}} was banned from the server{{REASON}}',
+    'BAN_DM_MESSAGE': 'You were banned from the server `{{GUILD}}`{{REASON}}',
     'CONFIRM_BAN': 'Are you sure you want to ban {{MEMBER}}?',
   },
   errors: {
