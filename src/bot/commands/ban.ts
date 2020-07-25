@@ -7,7 +7,8 @@ async function banCommand(message: Message, args: string[]): Promise<Message> {
   if (!target) return message.reply(localize('error', 'en', 'command', [], 'NO_TARGET'));
   if (target.user.id === message.author.id) return message.reply(localize('error', 'en', 'command', [], 'NOT_BANNABLE_SELF'));
   if (!target.bannable) return message.reply(localize('error', 'en', 'command', [], 'NOT_BANNABLE_ME'));
-  if (message.guild!.ownerID !== message.member!.id && target.roles.highest.position >= message.member!.roles.highest.position) {
+  if (message.guild!.ownerID !== message.member!.id) return message.reply(localize('error', 'en', 'command', [], 'NOT_BANNABLE_OWNER'))
+  if (target.roles.highest.position >= message.member!.roles.highest.position) {
     return message.reply(localize('error', 'en', 'command', [], 'NOT_BANNABLE'));
   }
 

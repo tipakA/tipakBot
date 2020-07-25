@@ -11,6 +11,7 @@ const en = {
       'NO_TARGET': 'You have passed invalid target - No one was mentioned or ID is incorrect.',
       'NOT_BANNABLE': 'You cannot ban this user.',
       'NOT_BANNABLE_ME': 'I cannot ban this user.',
+      'NOT_BANNABLE_OWNER': 'Guild owner cannot be banned',
       'NOT_BANNABLE_SELF': 'You cannot ban yourself.',
     },
     eventHandler: {
