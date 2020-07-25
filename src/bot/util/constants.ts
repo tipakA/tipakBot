@@ -4,7 +4,8 @@ const en = {
     'BAN_CANCELLED': 'Banning cancelled.',
     'BAN_CONFIRM': 'User {{MEMBER}} was banned from the server{{REASON}}',
     'BAN_DM_MESSAGE': 'You were banned from the server `{{GUILD}}`{{REASON}}',
-    'CONFIRM_BAN': 'Are you sure you want to ban {{MEMBER}}?',
+    'BAN_TIMEOUT': 'Timed out. User was not banned.',
+    'CONFIRM_BAN': 'Are you sure you want to ban {{MEMBER}}? respond with `cancel` to cancel ban.',
   },
   errors: {
     command: {
