@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.3
+
+- Slightly changed method `ban` command was using to obtain ban confirmation.
+- Added possibility to cancel ban with a message instead of only waiting for timeout.
+- Added guild owner check in `ban` command.
+
 ## 1.5.2
 
 - Updated `ban` command to always use localized strings.
