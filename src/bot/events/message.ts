@@ -50,7 +50,7 @@ async function messageEvent(client: tipakBot, message: Message) {
   command.run(message, args);
 }
 
-export = {
+export const event: Event = {
   run: messageEvent,
   type: 'message',
-} as Event;
+}

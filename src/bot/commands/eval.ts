@@ -26,7 +26,7 @@ async function evalCommand(message: Message, args: string[]): Promise<Message> {
 }
 
 /* eslint-disable sort-keys */
-export = {
+export const command: Command = {
   run: evalCommand,
   name: 'eval',
   guildOnly: false,
@@ -36,4 +36,4 @@ export = {
   ownerOnly: true,
   ownerSilentError: true,
   permissions: [],
-} as Command;
+}

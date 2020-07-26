@@ -39,7 +39,7 @@ async function banCommand(message: Message, args: string[]): Promise<Message | u
 }
 
 /* eslint-disable sort-keys */
-export = {
+export const command: Command = {
   run: banCommand,
   name: 'ban',
   guildOnly: true,
@@ -48,4 +48,4 @@ export = {
   category: 'Server Moderation',
   ownerOnly: false,
   permissions: ['BAN_MEMBERS'],
-} as Command;
+};

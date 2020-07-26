@@ -7,7 +7,7 @@ function pingCommand(message: Message, args: string[]): Promise<Message> {
 }
 
 /* eslint-disable sort-keys */
-export = {
+export const command: Command = {
   run: pingCommand,
   name: 'ping',
   guildOnly: false,
@@ -16,4 +16,4 @@ export = {
   category: 'Bot Utility',
   ownerOnly: false,
   permissions: [],
-} as Command;
+}

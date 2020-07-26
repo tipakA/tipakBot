@@ -8,7 +8,7 @@ export interface BlacklistEntry {
 }
 
 export interface Command {
-  run(message: Message, args: string[]): Promise<Message>;
+  run(message: Message, args: string[]): Promise<Message | undefined>;
   name: string;
   aliases: string[];
   category: string;

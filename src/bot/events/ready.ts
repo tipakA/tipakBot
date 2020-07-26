@@ -5,7 +5,7 @@ function readyEvent(client: tipakBot) {
   console.log(`Logged in as ${client.user!.tag}`);
 }
 
-export = {
+export const event: Event = {
   run: readyEvent,
   type: 'ready',
-} as Event;
+}
