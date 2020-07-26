@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.6.0
+
+- Add polish localization.
+  - Note that for now all localization still stays enforced to english.
+- Separated all localization files from each other for easier access.
+
 ## 1.5.4
 
 - Change guild owner check order in `ban` command (again)
