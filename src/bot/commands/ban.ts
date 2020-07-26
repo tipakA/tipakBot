@@ -2,7 +2,7 @@ import { Command } from '../util/interfaces'; // eslint-disable-line no-unused-v
 import { localize } from '../util/util';
 import { Message } from 'discord.js'; // eslint-disable-line no-unused-vars
 
-async function banCommand(message: Message, args: string[]): Promise<Message | undefined> {
+async function banCommand(message: Message, args: string[]): Promise<Message> {
   const target = message.mentions.members?.first() ?? message.guild!.members.cache.get(args[0]);
   if (!target) return message.reply(localize('error', 'en', 'command', [], 'NO_TARGET'));
   if (target.user.id === message.author.id) return message.reply(localize('error', 'en', 'command', [], 'NOT_BANNABLE_SELF'));
@@ -36,6 +36,7 @@ async function banCommand(message: Message, args: string[]): Promise<Message | u
     if (endReason === 'cancelled') return message.reply(localize('dialog', 'en', 'BAN_CANCELLED', []));
     if (endReason === 'time') return message.reply(localize('dialog', 'en', 'BAN_TIMEOUT', []));
   });
+  return message;
 }
 
 /* eslint-disable sort-keys */
