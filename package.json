@@ -1,6 +1,6 @@
 {
   "name": "tipakbot",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "General purpose Discord bot, rewritten in TypeScript",
   "main": "build/src/bot/tipakBot.js",
   "scripts": {

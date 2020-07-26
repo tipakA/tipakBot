@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.4
+
+- Change guild owner check order in `ban` command (again)
+
 ## 1.5.3
 
 - Slightly changed method `ban` command was using to obtain ban confirmation.
